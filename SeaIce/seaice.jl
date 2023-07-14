@@ -28,6 +28,7 @@ select!(north_index, Not([:" Source Data"]))
 select!(south_index, Not([:" Source Data"]))
 
 #Make first time series plot of YMD vs Extent in north and south
+#Extent units: 10^6 km^2
 x = north_index."YMD"
 y = north_index."     Extent"
 plot(x, y)
@@ -35,3 +36,5 @@ plot(x, y)
 x = south_index."YMD"
 y = south_index."     Extent"
 plot(x, y)
+
+
