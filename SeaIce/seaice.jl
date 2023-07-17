@@ -30,12 +30,15 @@ gdf_northsouth = groupby(df, :hemisphere)
 df_north = gdf_northsouth[(hemisphere="north",)]
 df_south = gdf_northsouth[(hemisphere="south",)]
 
+#Convert datetime to days of the year, allow for correct plotting
+day_of_year_north = dayofyear(df_north.datetime)
+
 
 gdf_north = groupby(df_north, :Year)
 gdf_south = groupby(df_south, :Year)
 
-nm = names(gdf_north)
 
+nm = names(gdf_north)
 
 p = plot() 
 for df_north_year in gdf_north
@@ -43,6 +46,14 @@ for df_north_year in gdf_north
 end
 
 display(p)
+
+# Create a DateTime object
+#dt = DateTime(2023, 7, 17)
+
+# Get the day of the year
+day_of_year_north = Dates.dayofyear(df_north.datetime)
+
+println(day_of_year)  # Output: 198
 
 # north_index = df[1:13177, :]
 # south_index = df[13178:26354, :]
