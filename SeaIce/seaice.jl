@@ -5,6 +5,7 @@ using Dates
 
 df = CSV.read("/Users/jsadler/Desktop/JacksCodingProjects/SeaIce/seaice.csv", DataFrame)
 
+
 #find all column names
 #note that dataset uses north and southern hemispheres
 #Column names: "Year"
@@ -31,8 +32,7 @@ df_north = gdf_northsouth[(hemisphere="north",)]
 df_south = gdf_northsouth[(hemisphere="south",)]
 
 #Convert datetime to days of the year, allow for correct plotting
-day_of_year_north = dayofyear(df_north.datetime)
-
+day_of_year_north = Dates.dayofyear(df_north.datetime)
 
 gdf_north = groupby(df_north, :Year)
 gdf_south = groupby(df_south, :Year)
@@ -41,9 +41,14 @@ gdf_south = groupby(df_south, :Year)
 nm = names(gdf_north)
 
 p = plot() 
+#Plot each year's data as a line
 for df_north_year in gdf_north
     plot!(df_north_year.MD, df_north_year[!, nm[4]], label="")
 end
+
+xlabel!("Day of Year")
+ylabel!("Extent (10^6 km^2")
+title!("Sea Ice Extent in Northern Hemisphere")
 
 display(p)
 
@@ -52,6 +57,7 @@ display(p)
 
 # Get the day of the year
 day_of_year_north = Dates.dayofyear(df_north.datetime)
+
 
 println(day_of_year)  # Output: 198
 
