@@ -43,3 +43,4 @@ plot!(x, yT7, linestyle = :dash, color = "yellow", linewidth=1.2, label = "Seven
 #Ninth Order Taylor TaylorSA
 yT9 = x - x.^3 / factorial(3) + x.^5 / factorial(5) - x.^7 / factorial(7) + x.^9 / factorial(9)
 plot!(x, yT9, linestyle = :dash, color = "purple", linewidth = 1.2, label = "Ninth Order")
+
