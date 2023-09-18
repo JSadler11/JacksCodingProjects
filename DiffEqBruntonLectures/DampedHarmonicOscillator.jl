@@ -41,7 +41,7 @@ tspan = (0.0, T)
 
 #Solve the ODE using the 'ode45' function
 prob = ODEProblem(odefunc!, x0, tspan)
-sol = solve(prob, saveat = dt)
+sol = solve(prob, DP5())
 
 #Extract the solution
 t = sol.t
