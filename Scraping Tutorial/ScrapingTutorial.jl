@@ -1,4 +1,5 @@
-ScrapingTutorial.jl
+ScrapingTutorialEx1.jl
+
 
 
 # Ex1: Scrape an HTML table and convert to a CSV file
@@ -125,10 +126,55 @@ writedlm("client-list.csv", p_matrix, ',')
 
 # Success!
 
+# Example 2: Larger HTML table
 
+# get HTML
 
+using HTTP
 
+url = "https://dabblingdoggo.github.io/mysite11/"
 
+r = HTTP.get(url)
+
+# parse HTML
+
+using Gumbo
+
+h = parsehtml(String(r.body))
+
+body = h.root[2]
+
+#find table element in HTML body
+
+body[1]
+
+body[1].children
+
+body[1][38]
+
+body[1][38][1]
+
+table = body[1][38][1]
+
+nrows = length(table.children)
+
+# Identify pattern for rows and columns in this table
+
+table[1]
+
+table[2]
+
+table[3]
+
+header = table[1]
+
+ncols = length(header.children)
+
+table[1][1]
+
+table[1][2]
+
+table[1][3]
 
 
 
